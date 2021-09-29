@@ -1,16 +1,13 @@
 package main.java.cio.sgto.santander.com.repository.entites;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity
 public class Book extends PanacheEntity {
-	
-	@Id @GeneratedValue private Long id;
-	
+			
 	
 	private String description;
 	private String author;
