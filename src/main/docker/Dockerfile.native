@@ -3,7 +3,7 @@
 #
 # Before building the container image run:
 #
-# ./mvnw package -Pnative
+# ./mvnw compile quarkus:dev:
 #
 # Then, build the image with:
 #
