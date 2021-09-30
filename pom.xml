@@ -57,18 +57,36 @@
   <build>
     <plugins>
     <plugin>
-      <artifactId>maven-assembly-plugin</artifactId>
-	      <configuration>
-	        <archive>
-	          <manifest>
-	            <mainClass>main.java.cio.sgto.santander.com.Main</mainClass>
-	          </manifest>
-	        </archive>
-	        <descriptorRefs>
-	          <descriptorRef>jar-with-dependencies</descriptorRef>
-	        </descriptorRefs>
-	      </configuration>
-      </plugin>
+	    <groupId>org.apache.maven.plugins</groupId>
+	    <artifactId>maven-dependency-plugin</artifactId>
+	    <executions>
+	        <execution>
+	            <id>copy-dependencies</id>
+	            <phase>prepare-package</phase>
+	            <goals>
+	                <goal>copy-dependencies</goal>
+	            </goals>
+	            <configuration>
+	                <outputDirectory>${project.build.directory}/lib</outputDirectory>
+	                <overWriteReleases>false</overWriteReleases>
+	                <overWriteSnapshots>false</overWriteSnapshots>
+	                <overWriteIfNewer>true</overWriteIfNewer>
+	            </configuration>
+	        </execution>
+	    </executions>
+	</plugin>
+    <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-jar-plugin</artifactId>
+		<version>2.4</version>
+		<configuration>
+		  <archive>
+		    <manifest>
+			<mainClass>main.java.cio.sgto.santander.com.Main</mainClass>
+		    </manifest>
+		  </archive>
+		</configuration>
+	    </plugin>
       <plugin>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
